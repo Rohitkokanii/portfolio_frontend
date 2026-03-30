@@ -1,5 +1,6 @@
 export const skills = {
-  languages: ["Java", "SQL", "JavaScript"],
-  frameworks: ["Spring Boot", "React"],
-  databases: ["MySQL", "MongoDB"],
+  Languages: ["Java", "SQL", "JavaScript", "HTML/CSS"],
+  Frameworks: ["Spring Boot", "Hibernate", "React"],
+  Databases: ["MySQL", "PostgreSQL", "MongoDB"],
+  Tools: ["Git", "Maven", "Docker", "Jenkins"],
 };
