@@ -2,104 +2,93 @@ import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
+  const [active, setActive] = useState("home");
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") !== "light";
   });
 
-  // Apply theme
   useEffect(() => {
     const theme = darkMode ? "dark" : "light";
     document.body.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [darkMode]);
 
-  // Smooth scroll function
+  // 🔥 Detect active section on scroll
+  useEffect(() => {
+    const sections = ["home", "about", "skills", "projects", "contact"];
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          const offsetTop = section.offsetTop - 100;
+          const height = section.offsetHeight;
+
+          if (scrollY >= offsetTop && scrollY < offsetTop + height) {
+            setActive(id);
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    section?.scrollIntoView({ behavior: "smooth" });
-    setExpanded(false); // close mobile menu
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setExpanded(false);
   };
 
   return (
-    <nav className="navbar navbar-expand-lg fixed-top custom-navbar px-4">
-      <div className="container-fluid">
-        {/* Logo */}
-        <span
-          className="navbar-brand brand-text"
-          onClick={() => scrollToSection("home")}
-          style={{ cursor: "pointer" }}
-        >
+    <nav className="custom-navbar fixed-top">
+      <div className="container-fluid nav-container">
+        <span className="brand-logo" onClick={() => scrollToSection("home")}>
           Rohit Kokani
         </span>
 
-        {/* Toggle */}
-        <button
-          className="navbar-toggler"
-          onClick={() => setExpanded(!expanded)}
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        {/* Menu */}
-        <div className={`collapse navbar-collapse ${expanded ? "show" : ""}`}>
-          <ul className="navbar-nav mx-auto gap-lg-4 text-center">
-            <li className="nav-item">
-              <span
-                className="nav-link nav-custom"
-                onClick={() => scrollToSection("home")}
-              >
-                Home
-              </span>
-            </li>
-
-            <li className="nav-item">
-              <span
-                className="nav-link nav-custom"
-                onClick={() => scrollToSection("about")}
-              >
-                About
-              </span>
-            </li>
-
-            <li className="nav-item">
-              <span
-                className="nav-link nav-custom"
-                onClick={() => scrollToSection("skills")}
-              >
-                Skills
-              </span>
-            </li>
-
-            <li className="nav-item">
-              <span
-                className="nav-link nav-custom"
-                onClick={() => scrollToSection("projects")}
-              >
-                Projects
-              </span>
-            </li>
-
-            <li className="nav-item">
-              <span
-                className="nav-link nav-custom"
-                onClick={() => scrollToSection("contact")}
-              >
-                Contact
-              </span>
-            </li>
-          </ul>
-
-          {/* Theme Toggle */}
-          <div className="d-flex justify-content-center mt-3 mt-lg-0">
-            <button
-              className="theme-icon"
-              onClick={() => setDarkMode(!darkMode)}
+        <div className="nav-menu d-none d-md-flex">
+          {["home", "about", "skills", "projects", "contact"].map((item) => (
+            <span
+              key={item}
+              className={`nav-item ${active === item ? "active" : ""}`}
+              onClick={() => scrollToSection(item)}
             >
-              {darkMode ? "☀️" : "🌙"}
-            </button>
-          </div>
+              {item.charAt(0).toUpperCase() + item.slice(1)}
+            </span>
+          ))}
+        </div>
+
+        <div className="d-flex align-items-center gap-3">
+          <button className="theme-btn" onClick={() => setDarkMode(!darkMode)}>
+            {darkMode ? "☀️" : "🌙"}
+          </button>
+
+          <button
+            className="menu-btn d-md-none"
+            onClick={() => setExpanded(!expanded)}
+          >
+            ☰
+          </button>
         </div>
       </div>
+
+      {/* MOBILE MENU */}
+      {expanded && (
+        <div className="mobile-menu d-md-none">
+          {["home", "about", "skills", "projects", "contact"].map((item) => (
+            <span
+              key={item}
+              className={active === item ? "active" : ""}
+              onClick={() => scrollToSection(item)}
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
