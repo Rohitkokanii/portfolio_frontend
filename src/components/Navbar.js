@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { CiLight } from "react-icons/ci";
+import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
@@ -61,9 +63,33 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="d-flex align-items-center gap-3">
+        {/* <div className="d-flex align-items-center gap-3">
           <button className="theme-btn" onClick={() => setDarkMode(!darkMode)}>
             {darkMode ? "☀️" : "🌙"}
+          </button>
+
+          <button
+            className="menu-btn d-md-none"
+            onClick={() => setExpanded(!expanded)}
+          >
+            ☰
+          </button>
+        </div> */}
+        <div className="d-flex align-items-center gap-3">
+          <button
+            className={`theme-switch ${darkMode ? "dark" : "light"}`}
+            onClick={() => setDarkMode(!darkMode)}
+          >
+            <div className="switch-thumb">
+              {darkMode ? <MdOutlineDarkMode /> : <MdOutlineLightMode />}
+            </div>
+
+            <span className="icon sun">
+              <MdOutlineLightMode />
+            </span>
+            <span className="icon moon">
+              <MdOutlineDarkMode />
+            </span>
           </button>
 
           <button
