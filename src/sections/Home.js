@@ -1,3 +1,5 @@
+import TiltImage from "./components/TiltImage";
+
 export default function Home() {
   return (
     <section className="home-section d-flex align-items-center">
@@ -28,13 +30,14 @@ export default function Home() {
           </div>
 
           {/* RIGHT SIDE (IMAGE) */}
-          <div className="col-lg-6 text-center mt-5 mt-lg-0">
+          {/* <div className="col-lg-6 text-center mt-5 mt-lg-0">
             <img
               src="https://tse4.mm.bing.net/th/id/OIP.-so6U1efiXqGkHDYPYmczAHaHa?w=2000&h=2000&rs=1&pid=ImgDetMain&o=7&rm=3"
               alt="profile"
               className="img-fluid rounded-4 shadow"
             />
-          </div>
+          </div> */}
+          <TiltImage />
         </div>
       </div>
     </section>
