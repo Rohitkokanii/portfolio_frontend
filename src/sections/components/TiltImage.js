@@ -24,11 +24,7 @@ export default function TiltImage() {
 
   return (
     <div className="tilt-card" ref={tiltRef}>
-      <img
-        src="https://tse4.mm.bing.net/th/id/OIP.-so6U1efiXqGkHDYPYmczAHaHa?w=2000&h=2000&rs=1&pid=ImgDetMain&o=7&rm=3"
-        alt="profile"
-        className="profile-img"
-      />
+      <img src="Rohit_Photo.png" alt="profile photo" className="profile-img" />
     </div>
   );
 }

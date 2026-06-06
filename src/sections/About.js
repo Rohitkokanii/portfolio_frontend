@@ -3,12 +3,9 @@ export default function About() {
     <section id="about" className="about-section py-5">
       <div className="container">
         <div className="row align-items-center">
-
           {/* LEFT CONTENT */}
           <div className="col-lg-6 mb-4 mb-lg-0">
-            <h2 className="section-title mb-4">
-              <span className="line"></span> Who I am
-            </h2>
+            <h2 className="section-title mb-4">Who I am</h2>
 
             <p className="about-text">
               Passionate Java Developer with a strong interest in backend
@@ -24,37 +21,28 @@ export default function About() {
 
           {/* RIGHT SIDE (TIMELINE) */}
           <div className="col-lg-6">
-
             <h5 className="timeline-title mb-4">Timeline</h5>
 
             <div className="timeline">
-
               {/* Item 1 */}
-              <div className="timeline-item">
-                <span className="timeline-date">2023 - Present</span>
-                <h6 className="timeline-heading">
-                  Backend Developer Internship
-                </h6>
-                <p className="timeline-text">
-                  Working with Spring Boot and Microservices architecture.
-                </p>
-              </div>
-
-              {/* Item 2 */}
-              <div className="timeline-item">
-                <span className="timeline-date">2019 - 2023</span>
-                <h6 className="timeline-heading">
-                  B.Tech in Computer Science
-                </h6>
-                <p className="timeline-text">
-                  Focused on Data Structures, Algorithms, and Core Java.
-                </p>
-              </div>
-
+              {[1, 2].map((itex, item) => {
+                return (
+                  <div className="timeline-item">
+                    <div className="timeline-line"></div>
+                    <div>
+                      <span className="timeline-date">2023 - Present</span>
+                      <h6 className="timeline-heading">
+                        Backend Developer Internship
+                      </h6>
+                      <p className="timeline-text">
+                        Working with Spring Boot and Microservices architecture.
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

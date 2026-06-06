@@ -19,12 +19,8 @@ export default function Home() {
             </p>
 
             <div className="mt-4 d-flex gap-3 justify-content-center justify-content-lg-start">
-              <a href="#projects" className="btn btn-primary px-4 py-2">
-                View Projects
-              </a>
-
-              <a href="#contact" className="btn btn-outline-light px-4 py-2">
-                Contact Me
+              <a href="#/" className="btn btn-primary px-4 py-2">
+                Resume
               </a>
             </div>
           </div>
