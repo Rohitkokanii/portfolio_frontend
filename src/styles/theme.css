@@ -2,24 +2,30 @@
 
 [data-theme="dark"] {
   --bg: #081c3a;
+  --bg2: #141414;
   --nav: linear-gradient(to right, #081c3a, #0b2a5a);
   --text: #f3f3f3;
   --heading: linear-gradient(to right, #adc6ff, #4d8eff);
   --subText: #cfcfcf;
   --active: #60a5fa;
+  --border: #e1e1e1;
   --imgBackground: rgba(180, 180, 180, 0.759);
+  --boxShado: #022650fc;
+  --card: #5a5a5a4f;
 }
 
 [data-theme="light"] {
   --bg: #f8fafc;
+  --bg2: #e5e5e5;
   --nav: rgba(255, 255, 255, 0.7);
-  --text: #1e293b; /* dark blue-gray text */
+  --text: #1e293b;
   --heading: linear-gradient(to right, #7aa1fd, #2a77fa);
   --subText: #464646;
-  --active: #2563eb; /* professional blue */
+  --active: #2563eb;
   --card: #ffffff;
-  --border: #e2e8f0;
+  --border: #b0b0b0;
   --imgBackground: rgba(181, 181, 181, 0.759);
+  --boxShado: #d2d2d2;
 }
 html {
   scroll-behavior: smooth;
@@ -149,6 +155,12 @@ body {
   min-height: 100vh;
   background: var(--bg);
   padding-top: 100px;
+}
+
+@media (min-width: 992px) {
+  .home-section {
+    padding-top: 0px;
+  }
 }
 
 .small-text {
@@ -382,46 +394,169 @@ body {
 }
 
 /* CARD */
+/* ================= GLOBAL CSS: SKILLS SPOTLIGHT SHADOW ================= */
+
 .skill-card {
   background: var(--card);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  border-radius: 12px;
-  padding: 20px;
-  transition: 0.3s;
   border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+
+  /* CRITICAL FIX FOR GLOBAL CSS: Creates a localized stacking context */
+  isolation: isolate;
+
+  /* Fallbacks for standard render positions */
+  --mouse-x: 0px;
+  --mouse-y: 0px;
+
+  transition:
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Background element acting as our dynamic shadow falloff */
+/* ================= SKILLS SECTION (ULTRA-SMOOTH MASKED SHADOW) ================= */
+
+/* ================= SKILLS SECTION (NATIVE DYNAMIC BOX-SHADOW FIX) ================= */
+
+/* ================= PROFESSIONAL GRADE SKILLS DESIGN SYSTEM ================= */
+
+.skill-card {
+  position: relative;
+  height: 100%;
+  overflow: visible;
+  isolation: isolate;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+
+  /* Sets default safe coordinate targets off-canvas */
+  --mouse-x: -999px;
+  --mouse-y: -999px;
+
+  /* Elastic custom timing curve for container lift */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* THE PREMIUM SOLID FACE FRAME */
+.skill-card-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  padding: 28px 24px;
+  border-radius: 16px; /* Slightly smoother geometric radius */
+
+  background: var(--card);
+  /* border: 1px solid var(--border); */
+  box-shadow: 0px 0px 10px var(--boxShado);
+
+  transition:
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease;
+}
+
+/* EXTENDED FEATHER BACK-LIGHTING LAYERING */
+.skill-card-shadow {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  border-radius: 32px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+
+  filter: blur(28px); /* Deeper, softer diffusion range */
+  transition: opacity 0.4s ease;
+}
+
+/* Light Mode Custom Spotlight Balance */
+[data-theme="light"] .skill-card-shadow {
+  background: radial-gradient(
+    220px circle at calc(var(--mouse-x) + 20px) calc(var(--mouse-y) + 20px),
+    rgba(96, 165, 250, 0.54) 0%,
+    rgba(96, 165, 250, 0.04) 65%,
+    transparent 100%
+  );
+}
+
+/* Dark Mode Custom Ambient Cyberpunk Glow Balance */
+[data-theme="dark"] .skill-card-shadow {
+  background: radial-gradient(
+    240px circle at calc(var(--mouse-x) + 20px) calc(var(--mouse-y) + 20px),
+    rgba(96, 165, 250, 0.24) 0%,
+    rgba(96, 165, 250, 0.04) 65%,
+    transparent 100%
+  );
+}
+
+/* CRITICAL INTERACTION HOVER TRIGGERS */
 .skill-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px) scale(1.01); /* Dynamic scale pop */
 }
 
-/* HEADING */
+.skill-card:hover .skill-card-content {
+  border-color: var(--accent);
+}
+
+.skill-card:hover .skill-card-shadow {
+  opacity: 1; /* Turn on backlighting */
+}
+
+/* ================= TYPOGRAPHY & ELEMENT COMPONENT DESIGNS ================= */
+
+/* HEADING DECORATOR AND STYLING */
 .skill-heading {
-  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
-/* BADGES */
+/* Structural Accent indicator tag before Title text */
+.skill-heading::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 12px;
+  background: var(--accent);
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+/* PROFESSIONAL BADGES DESIGN */
 .skill-badge {
-  background: #f1f5f9;
-  color: #334155;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 12px;
+  background: var(--bg2);
+  color: var(--subText);
+  /* border: 1px solid var(--border); */
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.825rem;
+  font-weight: 500;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+
+  transition:
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
-/* small dot */
-.skill-badge::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  background: #4d8eff;
-  border-radius: 50%;
+/* Badge Individual pop transitions on focus hover states */
+.skill-badge:hover {
+  background: var(--card);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px); /* Independent micro-lift inside cards */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
-
 /* Project Sections */
 /* SECTION */
 .projects-section {

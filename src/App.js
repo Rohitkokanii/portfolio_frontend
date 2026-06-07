@@ -7,31 +7,31 @@ import Contact from "./sections/Contact";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./styles/theme.css";
-import { Route, Routes } from "react-router-dom";
+// import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
-import Resume from "./sections/Resume";
+// import Resume from "./sections/Resume";
 
 function App() {
   return (
     <>
       <Navbar />
 
-      <div id="home">
+      <div id="Home">
         <Home />
       </div>
-      <div id="about">
+      <div id="About">
         <About />
       </div>
-      <div id="skills">
+      <div id="Skills">
         <Skills />
       </div>
-      <div id="projects">
+      <div id="Projects">
         <Projects />
       </div>
-      <div>
+      {/* <div>
         <Resume />
-      </div>
-      <div id="contact">
+      </div> */}
+      <div id="Contact">
         <Contact />
       </div>
 

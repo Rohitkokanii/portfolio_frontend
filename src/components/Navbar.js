@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { CiLight } from "react-icons/ci";
+import { useEffect, useState } from "react";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 export default function Navbar() {
@@ -17,7 +16,7 @@ export default function Navbar() {
 
   // 🔥 Detect active section on scroll
   useEffect(() => {
-    const sections = ["home", "about", "skills", "projects", "contact"];
+    const sections = ["Home", "About", "Skills", "Projects", "Contact"];
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -52,29 +51,17 @@ export default function Navbar() {
         </span>
 
         <div className="nav-menu d-none d-md-flex">
-          {["home", "about", "skills", "projects", "contact"].map((item) => (
+          {["Home", "About", "Skills", "Projects", "Contact"].map((item) => (
             <span
               key={item}
               className={`nav-item ${active === item ? "active" : ""}`}
               onClick={() => scrollToSection(item)}
             >
-              {item.charAt(0).toUpperCase() + item.slice(1)}
+              {item}
             </span>
           ))}
         </div>
 
-        {/* <div className="d-flex align-items-center gap-3">
-          <button className="theme-btn" onClick={() => setDarkMode(!darkMode)}>
-            {darkMode ? "☀️" : "🌙"}
-          </button>
-
-          <button
-            className="menu-btn d-md-none"
-            onClick={() => setExpanded(!expanded)}
-          >
-            ☰
-          </button>
-        </div> */}
         <div className="d-flex align-items-center gap-3">
           <button
             className={`theme-switch ${darkMode ? "dark" : "light"}`}
@@ -104,7 +91,7 @@ export default function Navbar() {
       {/* MOBILE MENU */}
       {expanded && (
         <div className="mobile-menu d-md-none">
-          {["home", "about", "skills", "projects", "contact"].map((item) => (
+          {["Home", "About", "Skills", "Projects", "Contact"].map((item) => (
             <span
               key={item}
               className={active === item ? "active" : ""}
