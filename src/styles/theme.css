@@ -10,8 +10,8 @@
   --active: #60a5fa;
   --border: #e1e1e1;
   --imgBackground: rgba(180, 180, 180, 0.759);
-  --boxShado: #022650fc;
-  --card: #5a5a5a4f;
+  --boxShado: #022650a1;
+  --card: #0b2b5a59;
 }
 
 [data-theme="light"] {
@@ -22,7 +22,7 @@
   --heading: linear-gradient(to right, #7aa1fd, #2a77fa);
   --subText: #464646;
   --active: #2563eb;
-  --card: #ffffff;
+  --card: rgba(255, 255, 255, 0.481);
   --border: #b0b0b0;
   --imgBackground: rgba(181, 181, 181, 0.759);
   --boxShado: #d2d2d2;
@@ -449,6 +449,7 @@ body {
   border-radius: 16px; /* Slightly smoother geometric radius */
 
   background: var(--card);
+  /* backdrop-filter: blur(50px); */
   /* border: 1px solid var(--border); */
   box-shadow: 0px 0px 10px var(--boxShado);
 
@@ -469,7 +470,7 @@ body {
   z-index: -1;
   opacity: 0;
 
-  filter: blur(28px); /* Deeper, softer diffusion range */
+  filter: blur(38px); /* Deeper, softer diffusion range */
   transition: opacity 0.4s ease;
 }
 
