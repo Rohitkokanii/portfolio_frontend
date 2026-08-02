@@ -5,7 +5,7 @@ export const projects = [
     tech: ["Java", "Spring Boot", "MySQL"],
     github: "#",
     live: "#",
-    image: "https://via.placeholder.com/400",
+    image: "project_img1.png",
   },
   {
     title: "Weather Dashboard",
@@ -13,6 +13,6 @@ export const projects = [
     tech: ["React", "JavaScript"],
     github: "#",
     live: "#",
-    image: "https://via.placeholder.com/400",
+    image: "project_img1.png",
   },
 ];
