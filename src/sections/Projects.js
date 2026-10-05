@@ -6,15 +6,23 @@ export default function Projects() {
     <section id="projects" className="projects-section py-5">
       <div className="container">
         {/* Section Heading */}
-        <div className="text-center mb-5">
+        {/* <div className="text-center mb-5">
           <h2 className="projects-title">Selected Projects</h2>
+          <p className="projects-subtitle">
+            A showcase of recent work and applications
+          </p>
+        </div> */}
+        <div className="text-center mb-5">
+          <h2 className="skills-title">Selected Projects</h2>
+          <div className="title-line"></div>
           <p className="projects-subtitle">
             A showcase of recent work and applications
           </p>
         </div>
 
         {/* Projects Stack */}
-        <div className="d-flex flex-column gap-5">
+        {/* <div className="d-flex flex-column gap-5"> */}
+        <div className="d-flex flex-column projects-container">
           {projects.map((p, i) => {
             const isEven = i % 2 === 0;
 

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { MdEmail } from "react-icons/md";
+import { IoLocationSharp } from "react-icons/io5";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -109,14 +111,15 @@ export default function Contact() {
             </h2>
 
             <p className="contact-desc">
-              I'm currently looking for new opportunities. Whether you have a
-              question or just want to say hi, feel free to contact me.
+              I’m currently open to new opportunities in software development.
+              Whether you’re looking for a developer, have an exciting project,
+              or simply want to connect, feel free to reach out.
             </p>
 
             {/* Email Info */}
             <div className="contact-info mt-4">
               <div className="info-item">
-                <span className="icon">📧</span>
+                <MdEmail size={25} />
                 <div>
                   <p className="label mb-0">Email</p>
                   <p className="value mb-0">rohitkokaniofficail@gmail.com</p>
@@ -124,10 +127,11 @@ export default function Contact() {
               </div>
 
               <div className="info-item">
-                <span className="icon">📍</span>
+                <IoLocationSharp size={25} />
+
                 <div>
                   <p className="label mb-0">Location</p>
-                  <p className="value mb-0">India</p>
+                  <p className="value mb-0">Pune, India</p>
                 </div>
               </div>
             </div>
@@ -138,13 +142,13 @@ export default function Contact() {
             <div className="contact-card p-4">
               {status.success && (
                 <div className="alert alert-success border-0 mb-4" role="alert">
-                  🎉 Thank you! Your message has been sent successfully.
+                  Thank you! Your message has been sent successfully.
                 </div>
               )}
 
               {status.error && (
                 <div className="alert alert-danger border-0 mb-4" role="alert">
-                  ⚠️ {status.error}
+                  {status.error}
                 </div>
               )}
 

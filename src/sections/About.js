@@ -1,3 +1,5 @@
+import experienceData from "../data/experienceData";
+
 export default function About() {
   return (
     <section id="about" className="about-section py-5">
@@ -8,14 +10,22 @@ export default function About() {
             <h2 className="section-title mb-4">Who I am</h2>
 
             <p className="about-text">
-              Passionate Java Developer with a strong interest in backend
-              architecture and system optimization. I specialize in building
-              scalable applications using modern technologies.
+              I’m a <strong>Software Developer</strong> passionate about
+              building
+              <strong> modern web and mobile applications</strong>. I specialize
+              in creating <strong>scalable, user-friendly solutions</strong>{" "}
+              from frontend interfaces to backend APIs and databases.
             </p>
 
             <p className="about-text">
-              My goal is to design and develop efficient systems that solve
-              real-world problems with clean and maintainable code.
+              I work with{" "}
+              <strong>
+                Java, Spring Boot, React, React Native, JavaScript, Node.js,
+                REST APIs
+              </strong>
+              , and <strong>SQL/NoSQL databases</strong>. I enjoy turning ideas
+              into <strong>reliable, real-world products </strong>
+              with clean code and great user experiences.
             </p>
           </div>
 
@@ -25,7 +35,7 @@ export default function About() {
 
             <div className="timeline">
               {/* Item 1 */}
-              {[1, 2].map((itex, item) => {
+              {/* {[1, 2].map((itex, item) => {
                 return (
                   <div className="timeline-item">
                     <div className="timeline-line"></div>
@@ -37,6 +47,23 @@ export default function About() {
                       <p className="timeline-text">
                         Working with Spring Boot and Microservices architecture.
                       </p>
+                    </div>
+                  </div>
+                );
+              })} */}
+              {experienceData.map((item) => {
+                return (
+                  <div className="timeline-item" key={item.id}>
+                    <div className="timeline-line"></div>
+
+                    <div>
+                      <span className="timeline-date">{item.date}</span>
+
+                      <h6 className="timeline-heading">{item.role}</h6>
+
+                      <p className="timeline-company">{item.company}</p>
+
+                      <p className="timeline-text">{item.description}</p>
                     </div>
                   </div>
                 );

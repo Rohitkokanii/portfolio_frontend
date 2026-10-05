@@ -42,7 +42,6 @@ body {
 }
 
 /* NAVBAR */
-/* NAVBAR */
 .custom-navbar {
   width: 100%;
   z-index: 999;
@@ -75,7 +74,7 @@ body {
 .nav-menu {
   gap: 30px;
   align-items: center;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 /* NAV ITEM */
@@ -588,13 +587,14 @@ body {
 .project-img-wrapper {
   background: var(--imgBackground);
   border-radius: 16px;
-  /* overflow: hidden; */
-  /* border: 1px solid var(--border); */
+  overflow: hidden;
+  border: 1px solid var(--border);
   box-shadow: 0 10px 30px var(--boxShado);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-  min-height: 250px; /* Ensures space is reserved if image fails */
+  min-height: 350px; /* Ensures space is reserved if image fails */
+  /* width: 70%; */
 }
 
 .project-img-wrapper:hover {
@@ -620,7 +620,15 @@ body {
 .project-details {
   background: transparent;
 }
+.projects-container {
+  gap: 120px;
+}
 
+@media (max-width: 768px) {
+  .projects-container {
+    gap: 70px;
+  }
+}
 .project-title {
   font-size: 1.75rem;
   font-weight: 700;

@@ -14,7 +14,6 @@ export default function Navbar() {
     localStorage.setItem("theme", theme);
   }, [darkMode]);
 
-  // 🔥 Detect active section on scroll
   useEffect(() => {
     const sections = ["Home", "About", "Skills", "Projects", "Contact"];
 

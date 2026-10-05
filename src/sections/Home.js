@@ -11,15 +11,23 @@ export default function Home() {
 
             <h1 className="main-heading">Rohit Kokani</h1>
 
-            <h2 className="sub-heading">Java Developer</h2>
+            <h2 className="sub-heading">Software Developer</h2>
 
             <p className="description">
-              Building scalable backend systems and modern web apps with clean
-              code and performance.
+              Building Scalable Web & Mobile Experiences That Turn Ideas Into
+              Reality.
             </p>
 
             <div className="mt-4 d-flex gap-3 justify-content-center justify-content-lg-start">
-              <a href="#/" className="btn btn-primary px-4 py-2">
+              {/* <a href="#/" className="btn btn-primary px-4 py-2">
+                Resume
+              </a> */}
+              <a
+                href="/Resume_Rohit.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary px-4 py-2"
+              >
                 Resume
               </a>
             </div>

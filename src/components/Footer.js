@@ -9,17 +9,27 @@ export default function Footer() {
           <h5 className="footer-name">Rohit Kokani</h5>
 
           <p className="footer-text">
-            © 2024 Rohit Kokani. Built with structural integrity.
+            © 2026 Rohit Kokani. Built with structural integrity.
           </p>
         </div>
 
         {/* RIGHT */}
         <div className="d-flex gap-4">
-          <a href="#" className="footer-link">
+          <a
+            href="https://github.com/Rohitkokanii"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-link"
+          >
             <FaGithub /> GitHub
           </a>
 
-          <a href="#" className="footer-link">
+          <a
+            href="https://www.linkedin.com/in/rohitkokani/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-link"
+          >
             <FaLinkedin /> LinkedIns
           </a>
         </div>
