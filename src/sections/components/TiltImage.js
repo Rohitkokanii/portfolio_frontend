@@ -5,26 +5,26 @@ export default function TiltImage() {
   const tiltRef = useRef(null);
 
   useEffect(() => {
-    if (tiltRef.current) {
-      VanillaTilt.init(tiltRef.current, {
-        max: -2, // tilt angle
-        speed: 500,
-        // scale: 1,
-        glare: false,
-        // "max-glare": 0.2,
-        perspective: 600,
-        gyroscope: true,
-      });
-    }
+    const element = tiltRef.current;
+
+    if (!element) return;
+
+    VanillaTilt.init(element, {
+      max: -2,
+      speed: 500,
+      glare: false,
+      perspective: 600,
+      gyroscope: true,
+    });
 
     return () => {
-      tiltRef.current?.vanillaTilt?.destroy();
+      element.vanillaTilt?.destroy();
     };
   }, []);
 
   return (
     <div className="tilt-card" ref={tiltRef}>
-      <img src="Rohit_Photo.png" alt="profile photo" className="profile-img" />
+      <img src="Rohit_Photo.png" alt="Rohit Kokani" className="profile-img" />
     </div>
   );
 }
