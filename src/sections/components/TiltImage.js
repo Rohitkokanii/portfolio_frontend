@@ -10,10 +10,11 @@ export default function TiltImage() {
     if (!element) return;
 
     VanillaTilt.init(element, {
-      max: -2,
+      max: 2,
       speed: 500,
-      glare: false,
       perspective: 600,
+      scale: 1.01,
+      glare: false,
       gyroscope: true,
     });
 

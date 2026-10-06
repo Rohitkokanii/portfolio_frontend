@@ -7,7 +7,11 @@ export default function Home() {
         <div className="row align-items-center">
           {/* LEFT SIDE */}
           <div className="col-lg-6 text-center text-lg-start">
-            <p className="small-text">Hello, World</p>
+            <p className="small-text">
+              <span className="terminal-symbol">&gt;</span>
+              <span>Hello, World</span>
+              <span className="cursor"></span>
+            </p>
 
             <h1 className="main-heading">Rohit Kokani</h1>
 

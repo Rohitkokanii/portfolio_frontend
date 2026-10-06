@@ -1,70 +1,144 @@
 import { useEffect, useState } from "react";
-import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
+import {
+  MdOutlineDarkMode,
+  MdOutlineLightMode,
+  MdMenu,
+  MdClose,
+} from "react-icons/md";
 
 export default function Navbar() {
   const [expanded, setExpanded] = useState(false);
-  const [active, setActive] = useState("home");
+  const [active, setActive] = useState("Home");
+
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") !== "light";
   });
 
+  const navItems = ["Home", "About", "Skills", "Projects", "Contact"];
+
+  /* =========================================
+     THEME
+  ========================================= */
+
   useEffect(() => {
     const theme = darkMode ? "dark" : "light";
+
     document.body.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [darkMode]);
 
+  /* =========================================
+     ACTIVE SECTION
+  ========================================= */
+
   useEffect(() => {
-    const sections = ["Home", "About", "Skills", "Projects", "Contact"];
-
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      const scrollPosition = window.scrollY + 140;
 
-      sections.forEach((id) => {
-        const section = document.getElementById(id);
-        if (section) {
-          const offsetTop = section.offsetTop - 100;
-          const height = section.offsetHeight;
+      let currentSection = "Home";
 
-          if (scrollY >= offsetTop && scrollY < offsetTop + height) {
-            setActive(id);
-          }
+      navItems.forEach((item) => {
+        const section = document.getElementById(item);
+
+        if (!section) return;
+
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+          currentSection = item;
         }
       });
+
+      setActive(currentSection);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
+  /* =========================================
+     SCROLL TO SECTION
+  ========================================= */
+
   const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const section = document.getElementById(id);
+
+    if (!section) return;
+
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    setActive(id);
+
+    // Close mobile menu
     setExpanded(false);
+  };
+
+  /* =========================================
+     TOGGLE MOBILE MENU
+  ========================================= */
+
+  const toggleMenu = () => {
+    setExpanded((prev) => !prev);
   };
 
   return (
     <nav className="custom-navbar fixed-top">
       <div className="container-fluid nav-container">
-        <span className="brand-logo" onClick={() => scrollToSection("home")}>
+        {/* =====================================
+            BRAND
+        ===================================== */}
+
+        <button
+          type="button"
+          className="brand-logo"
+          onClick={() => scrollToSection("Home")}
+          aria-label="Go to home"
+        >
           Rohit Kokani
-        </span>
+        </button>
+
+        {/* =====================================
+            DESKTOP NAVIGATION
+        ===================================== */}
 
         <div className="nav-menu d-none d-md-flex">
-          {["Home", "About", "Skills", "Projects", "Contact"].map((item) => (
-            <span
+          {navItems.map((item) => (
+            <button
+              type="button"
               key={item}
               className={`nav-item ${active === item ? "active" : ""}`}
               onClick={() => scrollToSection(item)}
             >
               {item}
-            </span>
+            </button>
           ))}
         </div>
 
-        <div className="d-flex align-items-center gap-3">
+        {/* =====================================
+            ACTIONS
+        ===================================== */}
+
+        <div className="nav-actions">
+          {/* THEME SWITCH */}
+
           <button
+            type="button"
             className={`theme-switch ${darkMode ? "dark" : "light"}`}
-            onClick={() => setDarkMode(!darkMode)}
+            onClick={() => setDarkMode((prev) => !prev)}
+            aria-label={
+              darkMode ? "Switch to light mode" : "Switch to dark mode"
+            }
           >
             <div className="switch-thumb">
               {darkMode ? <MdOutlineDarkMode /> : <MdOutlineLightMode />}
@@ -73,34 +147,50 @@ export default function Navbar() {
             <span className="icon sun">
               <MdOutlineLightMode />
             </span>
+
             <span className="icon moon">
               <MdOutlineDarkMode />
             </span>
           </button>
 
+          {/* MOBILE MENU BUTTON */}
+
           <button
-            className="menu-btn d-md-none"
-            onClick={() => setExpanded(!expanded)}
+            type="button"
+            className={`menu-btn d-md-none ${expanded ? "open" : ""}`}
+            onClick={toggleMenu}
+            aria-label={
+              expanded ? "Close navigation menu" : "Open navigation menu"
+            }
+            aria-expanded={expanded}
+            aria-controls="mobile-navigation"
           >
-            ☰
+            {expanded ? <MdClose /> : <MdMenu />}
           </button>
         </div>
       </div>
 
-      {/* MOBILE MENU */}
-      {expanded && (
-        <div className="mobile-menu d-md-none">
-          {["Home", "About", "Skills", "Projects", "Contact"].map((item) => (
-            <span
+      {/* =========================================
+          MOBILE NAVIGATION
+      ========================================= */}
+
+      <div
+        id="mobile-navigation"
+        className={`mobile-menu d-md-none ${expanded ? "show" : ""}`}
+      >
+        <div className="mobile-menu-inner">
+          {navItems.map((item) => (
+            <button
+              type="button"
               key={item}
-              className={active === item ? "active" : ""}
+              className={`mobile-nav-item ${active === item ? "active" : ""}`}
               onClick={() => scrollToSection(item)}
             >
               {item}
-            </span>
+            </button>
           ))}
         </div>
-      )}
+      </div>
     </nav>
   );
 }

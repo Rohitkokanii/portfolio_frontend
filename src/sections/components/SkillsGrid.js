@@ -14,6 +14,7 @@ export default function SkillsGrid({ skills }) {
 
   const handleMouseLeave = (e) => {
     const card = e.currentTarget;
+
     card.style.setProperty("--mouse-x", "-999px");
     card.style.setProperty("--mouse-y", "-999px");
   };
@@ -21,28 +22,38 @@ export default function SkillsGrid({ skills }) {
   return (
     <div className="row g-4">
       {Object.entries(skills).map(([key, value]) => (
-        <div key={key} className="col-md-6 col-lg-3">
+        <div key={key} className="col-12 col-md-6 col-xl-3">
           <div
             className="skill-card h-100"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
+            {/* Mouse glow */}
             <div className="skill-card-shadow" />
 
-            <div className="skill-card-content d-flex flex-column justify-content-between">
-              <div>
-                <h6 className="skill-heading text-uppercase">
-                  <span>{key}</span>
-                </h6>
+            <div className="skill-card-content">
+              {/* Category */}
+              <h6 className="skill-heading">
+                <span>{key}</span>
+              </h6>
 
-                {/* Grid Item Badges */}
-                <div className="d-flex flex-wrap gap-2 pt-2">
-                  {value.map((item, i) => (
-                    <span key={i} className="skill-badge">
-                      {item}
-                    </span>
-                  ))}
-                </div>
+              {/* Skills */}
+              <div className="skills-list">
+                {value.map((item, i) => (
+                  <div className="skill-item" key={i}>
+                    {/* Logo */}
+                    <div className="skill-logo">
+                      <img
+                        src={item.logo}
+                        alt={`${item.name} logo`}
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Name */}
+                    <span className="skill-name">{item.name}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

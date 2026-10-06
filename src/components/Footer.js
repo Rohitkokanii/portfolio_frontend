@@ -8,9 +8,7 @@ export default function Footer() {
         <div className="mb-4 mb-md-0 text-center text-md-start">
           <h5 className="footer-name">Rohit Kokani</h5>
 
-          <p className="footer-text">
-            © 2026 Rohit Kokani. Built with structural integrity.
-          </p>
+          <p className="footer-text">© 2026 Built with structural integrity.</p>
         </div>
 
         {/* RIGHT */}
