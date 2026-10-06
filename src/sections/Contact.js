@@ -122,7 +122,7 @@ export default function Contact() {
                 <MdEmail size={25} />
                 <div>
                   <p className="label mb-0">Email</p>
-                  <p className="value mb-0">rohitkokaniofficail@gmail.com</p>
+                  <p className="value mb-0">rohitkokaniofficial@gmail.com</p>
                 </div>
               </div>
 
