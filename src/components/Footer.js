@@ -28,7 +28,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="footer-link"
           >
-            <FaLinkedin /> LinkedIns
+            <FaLinkedin /> Linkedin
           </a>
         </div>
       </div>

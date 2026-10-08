@@ -153,7 +153,7 @@ body {
 .nav-item:hover {
   color: var(--active);
 
-  background: var(--bg2);
+  /* background: var(--bg2); */
 }
 
 /* ACTIVE */
@@ -164,7 +164,7 @@ body {
 
 /* Active underline */
 
-.nav-item.active::after {
+/* .nav-item.active::after {
   content: "";
 
   position: absolute;
@@ -182,7 +182,7 @@ body {
   background: var(--active);
 
   box-shadow: 0 0 10px rgba(96, 165, 250, 0.35);
-}
+} */
 
 /* =========================================
    MOBILE MENU
@@ -770,7 +770,103 @@ body {
   background: var(--bg);
   padding-top: 100px;
 }
+.resume-buttons {
+  gap: clamp(10px, 1.2vw, 16px);
+}
 
+/* Base button */
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 0.6vw, 9px);
+
+  padding: clamp(9px, 0.8vw, 12px) clamp(17px, 1.8vw, 25px);
+
+  font-size: clamp(13px, 0.9vw, 15px);
+  font-weight: 600;
+  letter-spacing: 0.1px;
+
+  border-radius: 8px;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+
+  cursor: pointer;
+}
+
+/* Icon */
+.resume-btn i {
+  font-size: clamp(13px, 0.9vw, 15px);
+  transition: transform 0.25s ease;
+}
+
+/* Primary - View Resume */
+.resume-btn-primary {
+  background: var(--active);
+  color: #fff;
+  border: 1px solid var(--active);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Primary hover */
+.resume-btn-primary:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.resume-btn-primary:hover i {
+  transform: scale(1.08);
+}
+
+/* Secondary - Download Resume */
+.resume-btn-secondary {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(8px);
+}
+
+/* Secondary hover */
+.resume-btn-secondary:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--active);
+  transform: translateY(-2px);
+}
+
+.resume-btn-secondary:hover i {
+  transform: translateY(2px);
+}
+.social-links {
+  gap: clamp(15px, 2vw, 28px);
+}
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(5px, 0.6vw, 7px);
+  color: var(--text);
+  text-decoration: none;
+  font-size: clamp(13px, 1vw, 15px);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.social-links a i {
+  font-size: clamp(13px, 1vw, 15px);
+}
+
+.social-links a:hover {
+  color: var(--active);
+  transform: translateY(-2px);
+}
 @media (min-width: 992px) {
   .home-section {
     padding-top: 0px;
@@ -1633,7 +1729,15 @@ body {
   max-width: 500px;
   line-height: 1.6;
 }
+.value {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
 
+.value:hover {
+  text-decoration: underline;
+}
 /* INFO ITEMS */
 .contact-info {
   display: flex;
@@ -1740,7 +1844,8 @@ body {
 .contact-btn:hover:not(:disabled) {
   opacity: 0.9;
   color: #ffffff;
-  transform: translateY(-1px);
+  background: var(--active);
+  transform: translateY(-2px);
 }
 
 .contact-btn:disabled {
